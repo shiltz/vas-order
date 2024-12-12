@@ -1,6 +1,5 @@
 package za.co.shilton.vasorderj23.config;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,9 +10,6 @@ import org.springframework.statemachine.test.StateMachineTestPlan;
 import org.springframework.statemachine.test.StateMachineTestPlanBuilder;
 import za.co.shilton.vasorderj23.common.statemachine.state.Event;
 import za.co.shilton.vasorderj23.common.statemachine.state.State;
-
-import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class VasOrderStatemachineTest {
