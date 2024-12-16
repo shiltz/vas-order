@@ -10,7 +10,6 @@ import org.springframework.statemachine.StateContext;
 import org.springframework.statemachine.StateMachine;
 import org.springframework.statemachine.StateMachinePersist;
 import org.springframework.statemachine.action.Action;
-import org.springframework.statemachine.config.EnableStateMachine;
 import org.springframework.statemachine.config.EnableStateMachineFactory;
 import org.springframework.statemachine.config.EnumStateMachineConfigurerAdapter;
 import org.springframework.statemachine.config.builders.StateMachineConfigurationConfigurer;
@@ -19,6 +18,7 @@ import org.springframework.statemachine.config.builders.StateMachineTransitionCo
 import org.springframework.statemachine.config.configurers.ExternalTransitionConfigurer;
 import org.springframework.statemachine.listener.StateMachineListener;
 import org.springframework.statemachine.listener.StateMachineListenerAdapter;
+import org.springframework.statemachine.persist.StateMachineRuntimePersister;
 import org.springframework.statemachine.transition.Transition;
 import reactor.core.publisher.Mono;
 import za.co.shilton.vasorderj23.common.statemachine.state.Event;
@@ -41,7 +41,9 @@ public class VasOrderStatemachine extends EnumStateMachineConfigurerAdapter<Stat
     @Override
     public void configure(StateMachineConfigurationConfigurer<State, Event> config)
             throws Exception {
-        config
+        config.withPersistence()
+                .runtimePersister(stateMachinePersist())
+                .and()
                 .withConfiguration()
                 .autoStartup(false)
                 .listener(listener());
@@ -134,6 +136,11 @@ public class VasOrderStatemachine extends EnumStateMachineConfigurerAdapter<Stat
             }
 
         };
+    }
+
+    @Bean
+    public StateMachineRuntimePersister<State, Event, String> stateMachinePersist() {
+        return new VasStatemachineInterceptor<State, Event, String>();
     }
 
 }
