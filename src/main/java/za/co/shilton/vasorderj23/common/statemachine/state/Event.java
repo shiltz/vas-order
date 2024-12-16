@@ -1,7 +1,7 @@
 package za.co.shilton.vasorderj23.common.statemachine.state;
 
 public enum Event {
-
+    START,
     ORDER_VALIDATION_PASSED,
     ORDER_VALIDATION_FAILED,
     QUOTE_VALIDATION_PASSED,

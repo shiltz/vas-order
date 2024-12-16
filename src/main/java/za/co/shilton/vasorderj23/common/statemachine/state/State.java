@@ -1,6 +1,7 @@
 package za.co.shilton.vasorderj23.common.statemachine.state;
 
 public enum State {
+    START,
     ORDER_VALIDATION,
     ORDER_VALIDATION_FAILURE,
     QUOTE_VALIDATION,
@@ -17,6 +18,7 @@ public enum State {
     NOTIFICATION_FAILURE,
     FINISH_ORDER_SUCCESS,
     FINISH_ORDER_FAILURE,
+    END,
 
 }
 
